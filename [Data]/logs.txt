@@ -1,0 +1,1 @@
+please remove this line after reading the desciption: This file is used to store user activity such as the time, the commandname, the author from a command.

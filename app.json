@@ -1,0 +1,37 @@
+{
+  "name": "OTP Verification",
+  "description": "Verify Accounts by OTP (OneTimePhone)",
+  "keywords": [
+    "OTP",
+    "OneTimePhone",
+    "Verify",
+    "Accounts"
+  ],
+  "repository": "https://github.com/FeelsBadMan1/SMSBotBypass-5sim",
+  "author": "FeelsBadMan1",
+  "contributors": [
+    "FeelsBadMan1"
+  ],
+  "version": "1.0.0",
+  "license": "MIT",
+  "env": {
+    "DATABASE_URL": {
+      "description": "Place the MongoDB Connection URL you find on their Website here",
+      "default": "mongodb://localhost:27017/",
+      "required": true,
+      "type": "string"
+    },
+    "COLLECTION_NAME": {
+      "description": "Place the Collection Name here (choose anything)",
+      "default": "users",
+      "required": true,
+      "type": "string"
+    },
+    "DISCORDBOT_TOKEN": {
+      "description": "Place the Discord Bot Token here",
+      "default": "",
+      "required": true,
+      "type": "string"
+    }
+  }
+}

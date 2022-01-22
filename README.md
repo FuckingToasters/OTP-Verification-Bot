@@ -1,4 +1,4 @@
-# 5sim
+# Verify your Accounts by Tempphone using this Discordbot
 5sim.net is a service, that offer you temp phonenumbers for otp verification. 
 It include a lot of countries you can choose from. 
 The cheapest option is russia. 1 verification for Discord cost only 1.3 Rubel!

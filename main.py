@@ -21,7 +21,7 @@ with open("app.json") as a:
     token = app["env"]["DISCORDBOT_TOKEN"]["description"]
     database_name = app["env"]["COLLECTION_NAME"]["description"]
     # myclient = pymongo.MongoClient(url, ssl=True, ssl_ca_certs="cacert.pem")
-    myclient = pymongo.MongoClient(url, ssl=True")
+    myclient = pymongo.MongoClient(url, ssl=True)
     mydb = myclient[database_name]
     collection_name = mydb["API Keys"]
     dblist = myclient.list_database_names()

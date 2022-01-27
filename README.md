@@ -6,6 +6,12 @@ __Requirements:__
 - Discord Bot with commands. Application & all intents enabled (https://discord.dev)
 
 __Setup the Discord-Bot:__
+- enable required intents:
+![image](https://user-images.githubusercontent.com/94435104/151340237-4945cffd-5a8b-46fb-9aac-d78470e5669c.png)
+
+- check all required checkboxes:
+![image](https://user-images.githubusercontent.com/94435104/151340371-7cac600d-818c-49bf-b371-301c78ad7dab.png)
+
 - Open the file called `app.json`
 - Edit the 3 description values inside the env option
 - Database URL (e.g. mongodb://localhost:27017) get this one from the MongoDB Website
@@ -14,7 +20,6 @@ __Setup the Discord-Bot:__
 - Discord Token (Your Bot token so the Program can login in the Bot account)
 - Invite the Bot to your Server
 - Type `/` to see all commands you can use and choose the one you like to use 
-
 
 5sim.net is a service, that offer you temp phonenumbers for otp verification. 
 It include a lot of countries you can choose from. 

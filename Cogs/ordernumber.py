@@ -56,7 +56,7 @@ class order_activation_number(commands.Cog):
                 embed.add_field(name="Price", value=activation_price)
                 embed.add_field(name="SMS", value=activation_sms)
                 embed.add_field(name="Country", value=activation_country)
-                embed.add_field(name="Timeout", value=f"You now can verify your Discordaccount using `{activation_phone}` and i will send updates within 60 Seconds.")
+                embed.add_field(name="Timeout", value=f"You now can verify your Account using `{activation_phone}`!.")
                 embed.set_thumbnail(url=ctx.author.avatar_url)
                 embed.set_footer(text=watermark)
                 await ctx.send(embed=embed, hidden=True)

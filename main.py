@@ -27,7 +27,7 @@ with open("app.json") as a:
     dblist = myclient.list_database_names()
     discordbot = commands.Bot(command_prefix="dont_put_ur_prefix_here", case_insensitive=True, self_bot=False, intents=discord.Intents.all())
     discordbot.remove_command("help")
-    slash = SlashCommand(discordbot, sync_commands=True, sync_on_cog_reload=True, debug_guild=903339334017642516)
+    slash = SlashCommand(discordbot, sync_commands=True, sync_on_cog_reload=True) # debug_guild=1234 (your ServerID) to make the bot only working on specific guilds
     watermark = "created by Infinimonster#1312"
 
 

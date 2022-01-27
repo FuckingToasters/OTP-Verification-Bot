@@ -39,7 +39,7 @@ class mongodb(commands.Cog):
                     collection_name.insert_one(mongodb_postdata)
 
                 embed = discord.Embed(title="Successfully", description="", colour=discord.Colour.green())
-                embed.add_field(name="[200] Request Successful", value="Your API Key has been stored using Advanced Encryption Standard!")
+                embed.add_field(name="[200] Request Successful", value="Your API Key has been sved and you wont be asked again on all other commands!")
                 embed.set_thumbnail(url=ctx.author.avatar_url)
                 embed.set_footer(text=watermark)
                 await ctx.send(embed=embed, hidden=True)

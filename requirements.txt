@@ -4,3 +4,4 @@ colorama
 discord-py-slash-command
 pymongo
 pymongo[srv]
+dnspython

@@ -1,4 +1,8 @@
 # [How to use the OTP Bot to receive verification-codes & more](http://discord.verify.gay)
+
+Please Note, that you should create your own instance and not ask someone to setup it for you. The Bot store your API-Key inside a Database so the owner can see all added keys and that is the main reason, why you not should trust anyone that connect the bot with a own Database.
+
+
 __Requirements:__
 - Python installed on your OS
 - 5sim.net account with some Founds on it

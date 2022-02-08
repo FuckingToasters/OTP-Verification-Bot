@@ -99,19 +99,14 @@ class order_activation_number(commands.Cog):
         Log(ctx.author, 'checkorder')
         try:
             await ctx.defer(hidden=True)
-
-            result = api_keys_collection.find_one({"_id": ctx.author.id})
+            result = collection_name.find_one({"_id": ctx.author.id})
             getapi = result.get("API Key")
 
             headers = {
                 "Authorization": "Bearer " + getapi,
                 "Content-Type": "application/json",
             }
-
-
             check_response = requests.get(f"https://5sim.net/v1/user/check/{order_id}", headers=headers)
-            embed = discord.Embed(title="Request Error", description="", colour=discord.Colour.red())
-
             if check_response.status_code == 200:
                 check_phone = check_response.json()["phone"]
                 check_operator = check_response.json()["operator"]
@@ -131,9 +126,9 @@ class order_activation_number(commands.Cog):
                     await ctx.send(embed=embed, hidden=True)
 
                 if check_status == "RECEIVED":
-                    check_sms_sender = check_response.json()["sms"][0]["sender"]
-                    check_sms_text = check_response.json()["sms"][0]["text"]
-                    check_sms_code = check_response.json()["sms"][0]["code"]
+                    check_sms_sender = check_response.json()["sms"][0]["sender"] if check_response.json()["sms"] != [] else "Not found"
+                    check_sms_text = check_response.json()["sms"][0]["text"] if check_response.json()["sms"] != [] else "Not found"
+                    check_sms_code = check_response.json()["sms"][0]["code"] if check_response.json()["sms"] != [] else "Not found"
                     embed = discord.Embed(title="Successfully", description="", colour=discord.Colour.green())
                     embed.add_field(name="Phone Number", value=check_phone)
                     embed.add_field(name="Network Operator", value=check_operator)
@@ -181,7 +176,6 @@ class order_activation_number(commands.Cog):
                     embed.set_thumbnail(url=ctx.author.avatar_url)
                     embed.set_footer(text=watermark)
                     await ctx.send(embed=embed, hidden=True)
-
 
             if check_response.status_code == 401:
                 embed.add_field(name="[401] Unauthorized", value="Invalid API Key detected => update your API Key please!")

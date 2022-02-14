@@ -33,8 +33,6 @@ class order_activation_number(commands.Cog):
                 "Authorization": "Bearer " + getapi,
                 "Content-Type": "application/json",
             }
-
-            embed = discord.Embed(title="Request Error", description="", colour=discord.Colour.red())
             response = requests.get(f"https://5sim.net/v1/user/buy/activation/{country}/{operator}/{service}", headers=headers)
             activation_id = response.json()["id"]
             activation_phone = response.json()["phone"]
@@ -44,10 +42,10 @@ class order_activation_number(commands.Cog):
             activation_expires = response.json()["expires"]
             activation_sms = response.json()["sms"]
             activation_country = response.json()["country"]
+            embed = discord.Embed(title=f"[Request Status {str(response.status_code)}] | Information", description="", colour=discord.Colour.green() if response.status_code == 200 else discord.Colour.red())
 
             if response.status_code == 200:
                 print(f"Buy Number: {response.json()}")
-                embed = discord.Embed(title="Successfully", description="", colour=discord.Colour.green())
                 embed.add_field(name="Order ID", value=activation_id)
                 embed.add_field(name="Bought Number", value=activation_phone)
                 embed.add_field(name="Operator", value=activation_operator)
@@ -56,7 +54,7 @@ class order_activation_number(commands.Cog):
                 embed.add_field(name="Price", value=activation_price)
                 embed.add_field(name="SMS", value=activation_sms)
                 embed.add_field(name="Country", value=activation_country)
-                embed.add_field(name="Timeout", value=f"You now can verify your Account using `{activation_phone}`!.")
+                embed.add_field(name="Information", value=f"You now can verify your Account using `{activation_phone}`!.")
                 embed.set_thumbnail(url=ctx.author.avatar_url)
                 embed.set_footer(text=watermark)
                 await ctx.send(embed=embed, hidden=True)
@@ -74,7 +72,6 @@ class order_activation_number(commands.Cog):
 
 
         except AttributeError:
-            embed = discord.Embed(title="Request Error", description="", colour=discord.Colour.red())
             embed.add_field(name="[401] Unauthorized", value="You cant use any command until you have set your API Key using /setapi")
             embed.set_footer(text=watermark)
             await ctx.send(embed=embed, hidden=True)
@@ -87,7 +84,6 @@ class order_activation_number(commands.Cog):
             pass
 
         elif isinstance(error, MRA_Error):
-            embed = discord.Embed(title="Request Error", description="", colour=discord.Colour.red())
             embed.add_field(name="[400] Missing Argument", value="`Country` is a required Argument that is Missing!")
             embed.set_thumbnail(url=ctx.author.avatar_url)
             embed.set_footer(text=watermark)
@@ -107,6 +103,7 @@ class order_activation_number(commands.Cog):
                 "Content-Type": "application/json",
             }
             check_response = requests.get(f"https://5sim.net/v1/user/check/{order_id}", headers=headers)
+            embed = discord.Embed(title=f"[Request Status {str(check_response.status_code)}] | Information", description="", colour=discord.Colour.green() if check_response.status_code == 200 else discord.Colour.red())
             if check_response.status_code == 200:
                 check_phone = check_response.json()["phone"]
                 check_operator = check_response.json()["operator"]
@@ -129,7 +126,6 @@ class order_activation_number(commands.Cog):
                     check_sms_sender = check_response.json()["sms"][0]["sender"] if check_response.json()["sms"] != [] else "Not found"
                     check_sms_text = check_response.json()["sms"][0]["text"] if check_response.json()["sms"] != [] else "Not found"
                     check_sms_code = check_response.json()["sms"][0]["code"] if check_response.json()["sms"] != [] else "Not found"
-                    embed = discord.Embed(title="Successfully", description="", colour=discord.Colour.green())
                     embed.add_field(name="Phone Number", value=check_phone)
                     embed.add_field(name="Network Operator", value=check_operator)
                     embed.add_field(name="Product", value=check_product)
@@ -164,14 +160,12 @@ class order_activation_number(commands.Cog):
                     await ctx.send(embed=embed, hidden=True)
 
                 if check_status == "CANCELED":
-                    embed = discord.Embed(title="Request Error", description="", colour=discord.Colour.red())
                     embed.add_field(name="[404] Order Status", value="Order has been Canceled!")
                     embed.set_thumbnail(url=ctx.author.avatar_url)
                     embed.set_footer(text=watermark)
                     await ctx.send(embed=embed, hidden=True)
 
                 if check_status == "BANNED":
-                    embed = discord.Embed(title="Request Error", description="", colour=discord.Colour.red())
                     embed.add_field(name="[404] Order Status", value="Order has been Banned!")
                     embed.set_thumbnail(url=ctx.author.avatar_url)
                     embed.set_footer(text=watermark)
@@ -191,7 +185,6 @@ class order_activation_number(commands.Cog):
 
 
         except AttributeError:
-            embed = discord.Embed(title="Request Error", description="", colour=discord.Colour.red())
             embed.add_field(name="[401] Unauthorized", value="You cant use any command until you have set your API Key using /setapi")
             embed.set_footer(text=watermark)
             await ctx.send( embed=embed, hidden=True)
@@ -202,7 +195,6 @@ class order_activation_number(commands.Cog):
     @check_activation_number.error
     async def checknumber_error(self, ctx, error):
         if isinstance(error, MRA_Error):
-            embed = discord.Embed(title="Request Error", description="", colour=discord.Colour.red())
             embed.add_field(name="[400] Missing Argument", value="`Order ID` is a required Argument that is Missing!")
             embed.set_footer(text=watermark)
             await ctx.send(embed=embed, hidden=True)

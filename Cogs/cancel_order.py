@@ -14,7 +14,7 @@ class cancel_activation_number(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @cog_ext.cog_slash(name="cancelorder", description="cancel a ordered number (useful if no sms is being sent & refound your founds)")
+    @cog_ext.cog_slash(name="cancelorder", description="cancel a ordered number (useful if no sms is being sent & refund your founds)")
     async def cancel_order(self, ctx, order_id):
         Log(ctx.author, 'cancelorder')
         try:

@@ -30,17 +30,6 @@ with open("app.json") as a:
     slash = SlashCommand(discordbot, sync_commands=True, sync_on_cog_reload=True) # debug_guild=1234 (your ServerID) to make the bot only working on specific guilds
     watermark = "created by Infinimonster#1312"
 
-
-# with open("config.json") as conf:
-#     config = json.load(conf)
-#     requests = cloudscraper.create_scraper()
-#     prefix = config.get("Discordbot Prefix")
-#     token = config.get("Discordbot Token")
-#     watermark = "created by ★MoneyDrop★#2921"
-#     discordbot = commands.Bot(command_prefix=prefix, case_insensitive=True, self_bot=False, intents=discord.Intents.all())
-#     discordbot.remove_command("help")
-#     slash = SlashCommand(discordbot, sync_commands=True, sync_on_cog_reload=True, debug_guild=123456789012345678)
-
     # logging activities from a Member
     def Log(user, command):
         timestamp = str(datetime.datetime.now().strftime('%Y-%M-%d %H:%M:%S'))
